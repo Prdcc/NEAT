@@ -8,11 +8,14 @@ public class NeuralNetwork {
     public final Genome genome;
     public ArrayList<Node> nodes = new ArrayList<>();
     public ArrayList<Connection> connections = new ArrayList<>();
+    public Map<Integer, Node> nodeDictionary = new HashMap<>();
     
     public NeuralNetwork(Genome genome) throws NEATException{
         this.genome = genome;
         for (NodeGene nodeGene : genome.nodeGenes) {
-            nodes.add(new Node(nodeGene));
+            Node temp = new Node(nodeGene);
+            nodes.add(temp);
+            nodeDictionary.put(temp.number, temp);
         }
         for(ConnectionGene gene: genome.connectionGenes){
             if(gene.enabled){
@@ -24,10 +27,8 @@ public class NeuralNetwork {
     }
     
     public Node getNode(int n) throws NEATException{
-        for(Node node: nodes){
-            if(node.number == n){
-                return node;
-            }
+        if(nodeDictionary.containsKey(n)){
+            return nodeDictionary.get(n);
         }
         throw new NEATException(NEATException.ExceptionCode.NODENOTFOUND);
     }
