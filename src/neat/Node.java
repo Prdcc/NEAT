@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neat;
 
 import java.util.*;
@@ -13,14 +8,14 @@ import java.util.*;
  */
 public class Node extends NodeGene{
     public double value;
-    public ArrayList<Connection> incomingConnections = new ArrayList<>();
+    public ArrayList<ConnectionGene> incomingConnections = new ArrayList<>();
     
-    public Node(int n, NodeType type) {
-        this(n, type, 0);
+    public Node(NodeType type) {
+        this(type, 0);
     }
     
-    public Node(int n, NodeType type, double value) {
-        super(n, type);
+    public Node(NodeType type, double value) {
+        super(type);
         this.value = value;
     }
     
@@ -33,12 +28,13 @@ public class Node extends NodeGene{
         this.value = value;
     }
     
+    
     @Override
     public String toString(){
         String connections = "\nConnections:\n";
-        for(Connection conn: incomingConnections){
+        for(ConnectionGene conn: incomingConnections){
             connections += conn.toString() + "\n";
         }
-        return String.format("%03d\tType: %s%s\n", number, type, connections);
+        return String.format("\tType: %s%s\n", type, connections);
     }
 }

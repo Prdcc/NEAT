@@ -6,19 +6,12 @@ package neat;
 public class NEAT {
 
     public static void main(String[] args) throws NEATException {
-        Genome G = new Genome(5, 3);
-        G.addNode(NodeGene.NodeType.HIDDEN);
-        G.addConnection(8, 10);
-        G.addConnection(1,8);
-        G.addNode(NodeGene.NodeType.HIDDEN);
-        G.addConnection(9, 10);
-        G.addConnection(1,9);
-        G.addNode(NodeGene.NodeType.HIDDEN);
-        G.addConnection(10, 5);
-        G.addConnection(1,10);
+        Genome G = new Genome(3,2);
+        G.addNode();
+        G.addConnection(0,5);
+        G.addConnection(5,3);
         NeuralNetwork net = new NeuralNetwork(G);
-        //System.out.print(net);
-        GenomePrinter.printGenome(G, "test.png");
+        System.out.print(net);
     }
 
 }

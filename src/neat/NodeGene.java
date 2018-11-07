@@ -5,11 +5,10 @@ package neat;
  * @author Enrico
  */
 public class NodeGene {
-    public final int number;
     public enum NodeType{
-        INPUT("input"),
-        OUTPUT("output"),
-        HIDDEN("hidden");
+        INPUT("IN"),
+        OUTPUT("OUT"),
+        HIDDEN("HDN");
         private final String name;
         private NodeType(String name){
             this.name = name;
@@ -20,14 +19,23 @@ public class NodeGene {
         }
     }
     public final NodeType type;
+    public int layer = -1;
     
     
-    public NodeGene(int n, NodeType type){
-        this.number = n;
+    public NodeGene(NodeType type){
         this.type = type;
     }
     
+    public NodeGene(NodeType type, int layer){
+        this(type);
+        this.layer = layer;
+    }
+    
     public NodeGene(NodeGene nodeGene){
-        this(nodeGene.number, nodeGene.type);
+        this(nodeGene.type, nodeGene.layer);
+    }
+    
+    public int getLayer(){
+        return layer;
     }
 }
