@@ -20,4 +20,8 @@ public class ConnectionGene {
     public ConnectionGene(ConnectionGene connectionGene){
         this(connectionGene.neuronInNumber, connectionGene.neuronOutNumber, connectionGene.enabled, connectionGene.weight);
     }
+
+    void disable() {
+        enabled = false;
+    }
 }
